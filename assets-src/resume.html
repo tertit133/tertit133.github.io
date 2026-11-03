@@ -6,21 +6,36 @@
 <style>
   @page { size: A4; margin: 0; }
   * { box-sizing: border-box; }
-  body { margin: 0; font-family: 'Segoe UI', Arial, sans-serif; color: #121826; font-size: 11pt; line-height: 1.5; }
-  .page { width: 210mm; min-height: 297mm; padding: 18mm 18mm 16mm; }
-  header { display: flex; gap: 18px; align-items: center; padding-bottom: 14px; border-bottom: 2px solid #3d5fe0; }
-  .mark { width: 64px; height: 64px; border-radius: 16px; background: linear-gradient(135deg,#3d5fe0,#7a4ce0); color: #fff; font-weight: 800; font-size: 24px; display: grid; place-items: center; flex-shrink: 0; }
-  h1 { margin: 0; font-size: 24pt; line-height: 1.1; }
-  .role { margin: 4px 0 0; font-size: 13pt; color: #3d5fe0; font-weight: 600; }
-  .contacts { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 24px; margin: 14px 0 6px; font-size: 10.5pt; }
-  .contacts b { display: inline-block; min-width: 78px; color: #5a6478; font-weight: 600; }
+  body { margin: 0; font-family: 'Segoe UI', Arial, sans-serif; color: #121826; font-size: 10.5pt; line-height: 1.4; }
+  .page { width: 210mm; padding: 12mm 16mm 8mm; }
   a { color: inherit; text-decoration: none; }
-  h2 { font-size: 13pt; margin: 22px 0 8px; text-transform: uppercase; letter-spacing: .06em; color: #3d5fe0; }
-  p { margin: 0 0 6px; }
-  .skills { display: flex; flex-wrap: wrap; gap: 8px; }
-  .skill { border: 1px solid #c9d2e6; border-radius: 999px; padding: 3px 12px; font-weight: 600; }
-  ul { margin: 0; padding-left: 18px; }
-  li { margin-bottom: 4px; }
+
+  header { display: flex; gap: 16px; align-items: center; padding-bottom: 10px; border-bottom: 2px solid #3d5fe0; }
+  .mark { width: 58px; height: 58px; border-radius: 15px; background: linear-gradient(135deg,#3d5fe0,#7a4ce0); color: #fff; font-weight: 800; font-size: 21px; display: grid; place-items: center; flex-shrink: 0; }
+  h1 { margin: 0; font-size: 22pt; line-height: 1.1; }
+  .role { margin: 3px 0 0; font-size: 12pt; color: #3d5fe0; font-weight: 600; }
+  .format { margin: 2px 0 0; font-size: 10pt; color: #5a6478; font-weight: 600; }
+
+  .contacts { display: grid; grid-template-columns: repeat(3, auto); justify-content: space-between; gap: 2px 16px; margin: 9px 0 0; font-size: 10pt; }
+  .contacts b { display: inline-block; min-width: 62px; color: #5a6478; font-weight: 600; }
+
+  h2 { font-size: 11pt; margin: 13px 0 5px; text-transform: uppercase; letter-spacing: .06em; color: #3d5fe0; }
+  p { margin: 0 0 4px; }
+
+  .job { margin-bottom: 7px; break-inside: avoid; }
+  .job-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+  .job-title { font-weight: 700; font-size: 11pt; }
+  .job-org { color: #3d5fe0; font-weight: 600; }
+  .period { color: #5a6478; white-space: nowrap; font-size: 10pt; font-weight: 600; }
+  ul { margin: 3px 0 0; padding-left: 16px; }
+  li { margin-bottom: 2px; }
+
+  dl { display: grid; grid-template-columns: 158px 1fr; gap: 3px 12px; margin: 0; }
+  dt { font-weight: 600; color: #5a6478; }
+  dd { margin: 0; }
+
+  .muted { color: #5a6478; }
+  footer { margin-top: 14px; padding-top: 6px; border-top: 1px solid #dfe4ee; font-size: 9.5pt; color: #5a6478; }
 </style>
 </head>
 <body>
@@ -30,6 +45,7 @@
     <div>
       <h1>Алтун Адем-Тахир</h1>
       <p class="role">Разработчик · C++ · C# · Python · JavaScript</p>
+      <p class="format">Полная занятость · офис или удалённо</p>
     </div>
   </header>
 
@@ -41,20 +57,63 @@
     <div><b>Сайт</b> <a href="https://tertit133.github.io">tertit133.github.io</a></div>
   </div>
 
-  <h2>Цель</h2>
-  <p>Ищу позицию разработчика в команде. Также открыт к частным заказам.</p>
+  <h2>О себе</h2>
+  <p>Разработчик с годом опыта коммерческой разработки на заказ: самостоятельно веду проекты от обсуждения ТЗ с заказчиком до сдачи и правок. Профильное образование по компьютерным системам и опыт ремонта электроники на компонентном уровне — понимаю, как устроено железо, на котором работает код. Ищу позицию разработчика в команде, где смогу расти.</p>
 
-  <h2>Языки и инструменты</h2>
-  <div class="skills">
-    <span class="skill">C++</span>
-    <span class="skill">C#</span>
-    <span class="skill">Python</span>
-    <span class="skill">JavaScript</span>
-    <span class="skill">Git / GitHub</span>
+  <h2>Опыт работы</h2>
+
+  <div class="job">
+    <div class="job-head">
+      <div><span class="job-title">Разработчик</span> — <span class="job-org">частные заказы (фриланс)</span></div>
+      <span class="period">1 год</span>
+    </div>
+    <ul>
+      <li>Разработка ПО под задачи заказчиков — от идеи до готового решения.</li>
+      <li>Полный цикл работы с клиентом: выяснение требований, согласование ТЗ, оценка и согласование сроков, сдача работы, правки по обратной связи.</li>
+      <li>Работа с иностранными заказчиками на английском без переводчика.</li>
+    </ul>
   </div>
 
-  <h2>Проекты</h2>
-  <p>Актуальный список проектов с кодом и демо — на сайте <a href="https://tertit133.github.io">tertit133.github.io</a> и в профиле <a href="https://github.com/tertit133">github.com/tertit133</a>.</p>
+  <div class="job">
+    <div class="job-head">
+      <div><span class="job-title">Техник</span> — <span class="job-org">PlayDay, зал игровых автоматов</span></div>
+      <span class="period">6 месяцев</span>
+    </div>
+    <ul>
+      <li>Техническое обслуживание и ремонт игровых автоматов.</li>
+      <li>Диагностика и ремонт электроники на компонентном уровне: поиск неисправного элемента на плате и его замена.</li>
+      <li>Восстанавливал платы ремонтом на уровне компонентов вместо замены узлов целиком — это экономило бюджет на запчасти и сокращало простой автоматов.</li>
+    </ul>
+  </div>
+
+  <div class="job">
+    <div class="job-head">
+      <div><span class="job-title">Курьер</span> — <span class="job-org">Яндекс Еда</span></div>
+      <span class="period">1 год</span>
+    </div>
+    <ul>
+      <li>Доставка заказов в сжатые сроки при высокой нагрузке: планирование маршрутов и приоритизация.</li>
+      <li>Ежедневная коммуникация с клиентами и ресторанами-партнёрами.</li>
+      <li>Развил пунктуальность, ответственность и стрессоустойчивость в условиях жёстких сроков.</li>
+    </ul>
+  </div>
+
+  <h2>Навыки</h2>
+  <dl>
+    <dt>Программирование</dt><dd>C++, C#, Python, JavaScript</dd>
+    <dt>Инструменты</dt><dd>Git, GitHub</dd>
+    <dt>Электроника</dt><dd>Диагностика и ремонт на компонентном уровне, пайка</dd>
+    <dt>Работа с заказчиком</dt><dd>Сбор требований и ТЗ, оценка сроков, сдача и правки</dd>
+  </dl>
+
+  <h2>Образование</h2>
+  <p><b>Пермский политехнический колледж им. Н. Г. Славянова</b>, Пермь</p>
+  <p class="muted">Специальность 09.02.01 «Компьютерные системы и комплексы», квалификация — техник по компьютерным системам</p>
+
+  <h2>Языки</h2>
+  <p><b>Английский — B2.</b> Читаю техническую документацию, общаюсь с иностранными заказчиками и разбираю ТЗ без переводчика.</p>
+
+  <footer>Проекты и код: <a href="https://tertit133.github.io">tertit133.github.io</a> · <a href="https://github.com/tertit133">github.com/tertit133</a></footer>
 </div>
 </body>
 </html>

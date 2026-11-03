@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { profile, stack, offers } from './data/profile.js';
+import { profile, stack, offers, experience, education, languages } from './data/profile.js';
 import { projects } from './data/projects.js';
 import {
   SunIcon,
@@ -15,6 +15,7 @@ import {
 
 const NAV = [
   { id: 'about', label: 'Обо мне' },
+  { id: 'experience', label: 'Опыт' },
   { id: 'stack', label: 'Стек' },
   { id: 'projects', label: 'Проекты' },
   { id: 'work', label: 'Сотрудничество' },
@@ -186,6 +187,82 @@ function Projects() {
   );
 }
 
+function Experience() {
+  const credit = education.photoCredit;
+
+  return (
+    <>
+      <h3 className="subhead">Опыт работы</h3>
+      <ol className="timeline">
+        {experience.map((job) => (
+          <li key={`${job.role}-${job.org}`} className="card job">
+            <div className="job__head">
+              <div>
+                <h4 className="job__role">{job.role}</h4>
+                <p className="job__org">{job.org}</p>
+              </div>
+              <span className="job__period">{job.period}</span>
+            </div>
+            <ul className="job__points">
+              {job.points.map((point) => (
+                <li key={point}>{point}</li>
+              ))}
+            </ul>
+          </li>
+        ))}
+      </ol>
+
+      <h3 className="subhead">Образование и языки</h3>
+      <div className="edu-grid">
+        <article className="card edu">
+          <figure className="edu__media">
+            <img
+              className="edu__img"
+              src={education.photo}
+              alt={education.photoAlt}
+              width="1200"
+              height="900"
+              loading="lazy"
+              decoding="async"
+            />
+            {credit && (
+              <figcaption className="edu__credit">
+                Фото:{' '}
+                <a href={credit.source} target="_blank" rel="noreferrer">
+                  {credit.author}
+                </a>
+                ,{' '}
+                <a href={credit.licenseUrl} target="_blank" rel="noreferrer license">
+                  {credit.license}
+                </a>
+              </figcaption>
+            )}
+          </figure>
+          <div className="edu__body">
+            <p className="label">Образование</p>
+            <h4>{education.place}</h4>
+            <p className="muted">{education.city}</p>
+            <p className="edu__qual">{education.qualification}</p>
+            <p className="muted">{education.specialty}</p>
+          </div>
+        </article>
+
+        <article className="card lang">
+          <p className="label">Языки</p>
+          {languages.map((lang) => (
+            <div key={lang.name}>
+              <h4>
+                {lang.name} — <span className="lang__level">{lang.level}</span>
+              </h4>
+              <p className="muted">{lang.note}</p>
+            </div>
+          ))}
+        </article>
+      </div>
+    </>
+  );
+}
+
 export default function App() {
   const year = new Date().getFullYear();
 
@@ -204,6 +281,10 @@ export default function App() {
               <p key={p}>{p}</p>
             ))}
           </div>
+        </Section>
+
+        <Section id="experience" title="Опыт и образование">
+          <Experience />
         </Section>
 
         <Section id="stack" title="Стек">
