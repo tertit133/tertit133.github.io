@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { profile, stack, offers } from './data/profile.js';
 import { projects } from './data/projects.js';
 import {
@@ -38,22 +38,32 @@ function useTheme() {
 function Header() {
   const [theme, toggleTheme] = useTheme();
   const [open, setOpen] = useState(false);
+  const headerRef = useRef(null);
 
+  // Мобильное меню закрывается по Escape и по нажатию за пределами шапки.
   useEffect(() => {
+    if (!open) return;
     const onKey = (e) => e.key === 'Escape' && setOpen(false);
+    const onPointer = (e) => {
+      if (!headerRef.current?.contains(e.target)) setOpen(false);
+    };
     window.addEventListener('keydown', onKey);
-    return () => window.removeEventListener('keydown', onKey);
-  }, []);
+    document.addEventListener('pointerdown', onPointer);
+    return () => {
+      window.removeEventListener('keydown', onKey);
+      document.removeEventListener('pointerdown', onPointer);
+    };
+  }, [open]);
 
   return (
-    <header className="header">
+    <header className="header" ref={headerRef}>
       <div className="container header__inner">
         <a href="#top" className="logo" onClick={() => setOpen(false)}>
           <span className="logo__mark">{profile.initials}</span>
           <span className="logo__text">{profile.name}</span>
         </a>
 
-        <nav className={`nav ${open ? 'nav--open' : ''}`} aria-label="Разделы сайта">
+        <nav id="site-nav" className={`nav ${open ? 'nav--open' : ''}`} aria-label="Разделы сайта">
           {NAV.map((item) => (
             <a key={item.id} href={`#${item.id}`} onClick={() => setOpen(false)}>
               {item.label}
@@ -75,6 +85,7 @@ function Header() {
             onClick={() => setOpen((o) => !o)}
             aria-label={open ? 'Закрыть меню' : 'Открыть меню'}
             aria-expanded={open}
+            aria-controls="site-nav"
           >
             {open ? <CloseIcon /> : <MenuIcon />}
           </button>
@@ -94,10 +105,8 @@ function Hero() {
         <p className="hero__status">
           <span className="dot" /> Открыт к предложениям и заказам
         </p>
-        <h1 className="hero__title">
-          {profile.name}
-          <span className="hero__role">{profile.role}</span>
-        </h1>
+        <h1 className="hero__title">{profile.name}</h1>
+        <p className="hero__role">{profile.role}</p>
         <p className="hero__lead">{profile.tagline}</p>
         <ul className="chips" aria-label="Языки программирования">
           {stack.map((s) => (

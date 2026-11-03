@@ -12,9 +12,9 @@
 |---|---|
 | Имя, тексты, контакты, стек, блок «Сотрудничество» | `src/data/profile.js` |
 | Проекты | `src/data/projects.js`, картинки в `public/projects/` |
-| Резюме и картинка-превью | `assets-src/resume.html`, `assets-src/og-image.html` |
+| Резюме, картинка-превью ссылки, иконка для iOS | `assets-src/resume.html`, `assets-src/og-image.html`, `assets-src/icon.html` |
 
-PDF-резюме и картинку-превью пересобирает команда (нужен Microsoft Edge):
+После правки этих HTML-файлов PDF и картинки пересобирает команда (нужен Microsoft Edge):
 
 ```powershell
 powershell -ExecutionPolicy Bypass -File assets-src\build-assets.ps1
