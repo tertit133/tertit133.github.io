@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="ru" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Адем-Тахир Алтун — разработчик</title>
+    <meta name="description" content="Адем-Тахир Алтун — разработчик на C++, C#, Python и JavaScript. Открыт к работе в команде и частным заказам." />
+    <meta name="theme-color" content="#0b0f17" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="canonical" href="https://tertit133.github.io/" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="ru_RU" />
+    <meta property="og:url" content="https://tertit133.github.io/" />
+    <meta property="og:title" content="Адем-Тахир Алтун — разработчик" />
+    <meta property="og:description" content="C++ · C# · Python · JavaScript. Открыт к работе и частным заказам." />
+    <meta property="og:image" content="https://tertit133.github.io/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- Тема ставится до отрисовки, чтобы не было «вспышки» светлого фона. По умолчанию — тёмная. -->
+    <script>
+      try {
+        var t = localStorage.getItem('theme');
+        if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t;
+      } catch (e) {}
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
