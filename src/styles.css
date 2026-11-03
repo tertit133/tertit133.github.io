@@ -709,6 +709,12 @@ h3 {
   .projects {
     grid-template-columns: 1fr;
   }
+  /* На телефоне период работы — над должностью, чтобы длинные даты не сжимали название */
+  .job__head {
+    flex-direction: column-reverse;
+    align-items: flex-start;
+    gap: 10px;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

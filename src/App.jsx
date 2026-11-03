@@ -241,7 +241,9 @@ function Experience() {
           <div className="edu__body">
             <p className="label">Образование</p>
             <h4>{education.place}</h4>
-            <p className="muted">{education.city}</p>
+            <p className="muted">
+              {education.city} · {education.graduation}
+            </p>
             <p className="edu__qual">{education.qualification}</p>
             <p className="muted">{education.specialty}</p>
           </div>
