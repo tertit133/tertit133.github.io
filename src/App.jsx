@@ -156,11 +156,29 @@ function Projects() {
   return (
     <div className="projects">
       {projects.map((p) => (
-        <article key={p.title} className="card project">
-          {p.image && <img className="project__img" src={p.image} alt={`Скриншот проекта ${p.title}`} loading="lazy" />}
+        <article key={p.title} className={`card project${p.featured ? ' project--featured' : ''}`}>
+          {p.image && (
+            <img
+              className="project__img"
+              src={p.image}
+              alt={p.imageAlt || `Скриншот проекта ${p.title}`}
+              width="1200"
+              height="750"
+              loading="lazy"
+              decoding="async"
+            />
+          )}
           <div className="project__body">
+            {p.kind && <p className="label">{p.kind}</p>}
             <h3>{p.title}</h3>
             <p className="muted">{p.description}</p>
+            {p.highlights?.length > 0 && (
+              <ul className="project__highlights">
+                {p.highlights.map((h) => (
+                  <li key={h}>{h}</li>
+                ))}
+              </ul>
+            )}
             <ul className="chips chips--small">
               {p.stack.map((s) => (
                 <li key={s} className="chip">
@@ -171,7 +189,7 @@ function Projects() {
             <div className="project__links">
               {p.code && (
                 <a href={p.code} target="_blank" rel="noreferrer">
-                  <GitHubIcon /> Код
+                  <GitHubIcon /> Код на GitHub
                 </a>
               )}
               {p.demo && (

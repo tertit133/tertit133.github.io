@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<!-- Картинка проекта (1200×750): реальный отчёт бота от 03.11.2026 в окне чата.
+     Пересборка: powershell -ExecutionPolicy Bypass -File assets-src\build-assets.ps1 -->
+<style>
+  html, body { margin: 0; width: 1200px; height: 750px; overflow: hidden; }
+  body {
+    font-family: 'Segoe UI', Arial, sans-serif; color: #e7ecf5; display: grid; place-items: center;
+    background:
+      radial-gradient(700px 400px at 0% 0%, rgba(124,156,255,.22), transparent),
+      radial-gradient(600px 380px at 100% 100%, rgba(180,140,255,.18), transparent),
+      #0b0f17;
+  }
+  .chat { width: 1100px; height: 680px; background: #101622; border: 1px solid #233049; border-radius: 28px; overflow: hidden; display: flex; flex-direction: column; }
+  .top { display: flex; align-items: center; gap: 16px; padding: 18px 28px; border-bottom: 1px solid #233049; background: #121a2a; }
+  .ava { width: 52px; height: 52px; border-radius: 50%; background: linear-gradient(135deg, #7c9cff, #b48cff); display: grid; place-items: center; font-size: 26px; }
+  .name { font-weight: 700; font-size: 24px; }
+  .sub { color: #98a3b8; font-size: 18px; }
+  .msgs { flex: 1; padding: 26px 32px; display: flex; flex-direction: column; gap: 18px; }
+  .me { align-self: flex-end; background: linear-gradient(135deg, #7c9cff, #b48cff); color: #0b0f17; font-weight: 600; font-size: 24px; padding: 12px 20px; border-radius: 18px 18px 6px 18px; }
+  .bot { align-self: flex-start; background: #1a2336; border: 1px solid #26324c; border-radius: 18px 18px 18px 6px; padding: 20px 26px; font-size: 23px; line-height: 1.55; max-width: 1000px; }
+  code { font-family: Consolas, 'Cascadia Mono', monospace; font-size: 21px; color: #c9d6ff; }
+  .time { display: block; text-align: right; color: #7f8aa3; font-size: 16px; margin-top: 6px; }
+</style>
+</head>
+<body>
+  <div class="chat">
+    <div class="top">
+      <div class="ava">🛡️</div>
+      <div><div class="name">Мониторинг прокси</div><div class="sub">бот</div></div>
+    </div>
+    <div class="msgs">
+      <div class="me">/check</div>
+      <div class="bot">
+        <b>📊 Статус прокси</b> · 03.11.2026 17:52<br><br>
+        🟢 Парсер: <code>149.130.173.58:9443</code> — <b>ON</b> (2.5 с)<br>
+        🟢 Почта: <code>102.244.78.61:8082</code> — <b>ON</b> (4.9 с)<br>
+        🔴 Аккаунты: <code>148.251.68.232:8888</code> — <b>OFF</b> (обрыв соединения)<br>
+        🔴 <code>185.21.141.238:1080</code> — <b>OFF</b> (таймаут)<br>
+        🔴 Мёртвый, для проверки OFF: <code>203.0.113.10:8000</code> — <b>OFF</b> (ошибка прокси: Invalid proxy response)<br><br>
+        ⚠️ Работают 2 из 5
+        <span class="time">17:52</span>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
