@@ -313,6 +313,32 @@ h3 {
   color: var(--accent-text);
 }
 
+/* Кнопка из двух частей: «Резюме (PDF)» — русская версия, «EN» — английская */
+.btn-split {
+  display: inline-flex;
+  transition: transform 0.15s;
+}
+
+.btn-split:hover {
+  transform: translateY(-1px);
+}
+
+.btn-split .btn:hover {
+  transform: none;
+  position: relative; /* рамка наведённой части поверх соседней */
+  z-index: 1;
+}
+
+.btn-split .btn:first-child {
+  border-radius: 12px 0 0 12px;
+}
+
+.btn-split .btn:last-child {
+  margin-left: -1px;
+  padding: 0 18px;
+  border-radius: 0 12px 12px 0;
+}
+
 /* ---------- Секции ---------- */
 .section {
   padding: 72px 0;
@@ -358,6 +384,19 @@ h3 {
 .stack__name {
   font-size: 22px;
   font-weight: 700;
+}
+
+.stack + .subhead {
+  margin-top: 40px;
+}
+
+.qualities {
+  margin: 0;
+}
+
+/* Длинная плашка на узком экране переносится на две строки — пусть будет скруглённым прямоугольником */
+.qualities .chip {
+  border-radius: 18px;
 }
 
 /* ---------- Проекты ---------- */
@@ -483,6 +522,11 @@ h3 {
   gap: 20px;
 }
 
+.offer {
+  display: flex;
+  flex-direction: column;
+}
+
 .offer h3 {
   font-size: 21px;
   margin-bottom: 10px;
@@ -490,6 +534,13 @@ h3 {
 
 .offer p {
   margin: 0 0 18px;
+}
+
+.offer__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+  margin-top: auto; /* ссылки в соседних карточках — на одной линии */
 }
 
 .link-arrow {
@@ -506,10 +557,21 @@ h3 {
   margin: -12px 0 24px;
 }
 
+/* Четыре контакта: сетка 2×2, на телефоне — в столбик */
 .contacts {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 16px;
+}
+
+@media (max-width: 640px) {
+  .contacts {
+    grid-template-columns: 1fr;
+  }
+}
+
+.contact__nowrap {
+  white-space: nowrap;
 }
 
 .contact {
@@ -680,6 +742,12 @@ h3 {
   color: var(--accent);
 }
 
+.lang__name {
+  color: var(--muted);
+  font-weight: 500;
+  white-space: nowrap; /* «Upper-Intermediate» не рвётся по дефису */
+}
+
 @media (max-width: 960px) {
   .edu-grid {
     grid-template-columns: 1fr;
@@ -750,6 +818,15 @@ h3 {
   }
   .hero__cta .btn {
     width: 100%;
+  }
+  .hero__cta .btn-split {
+    width: 100%;
+  }
+  .hero__cta .btn-split .btn {
+    width: auto;
+  }
+  .hero__cta .btn-split .btn:first-child {
+    flex: 1;
   }
   .section {
     padding: 56px 0;

@@ -1,4 +1,5 @@
-# Пересобирает public/resume.pdf, public/og-image.png и public/apple-touch-icon.png из HTML-файлов этой папки.
+# Пересобирает public/og-image.png, public/apple-touch-icon.png и картинки проектов из HTML-файлов этой папки.
+# Резюме (public/resume.pdf и public/resume-en.pdf) — готовые PDF, скрипт их не трогает.
 # Запуск из корня проекта: powershell -ExecutionPolicy Bypass -File assets-src\build-assets.ps1
 $ErrorActionPreference = 'Stop'
 $edge = "${env:ProgramFiles(x86)}\Microsoft\Edge\Application\msedge.exe"
@@ -8,7 +9,6 @@ $tmp = Join-Path $env:TEMP 'portfolio-edge-profile'
 
 function Get-FileUrl($name) { ([System.Uri](Join-Path $src $name)).AbsoluteUri }
 
-& $edge --headless --disable-gpu --user-data-dir="$tmp" --no-pdf-header-footer --print-to-pdf="$public\resume.pdf" (Get-FileUrl 'resume.html') | Out-Null
 & $edge --headless --disable-gpu --user-data-dir="$tmp" --hide-scrollbars --force-device-scale-factor=1 --window-size=1200,630 --screenshot="$public\og-image.png" (Get-FileUrl 'og-image.html') | Out-Null
 & $edge --headless --disable-gpu --user-data-dir="$tmp" --hide-scrollbars --force-device-scale-factor=1 --window-size=180,180 --screenshot="$public\apple-touch-icon.png" (Get-FileUrl 'icon.html') | Out-Null
 
@@ -22,5 +22,5 @@ if (Test-Path $projSrc) {
     }
 }
 
-Get-Item "$public\resume.pdf", "$public\og-image.png", "$public\apple-touch-icon.png" | Select-Object Name, Length, LastWriteTime
+Get-Item "$public\og-image.png", "$public\apple-touch-icon.png" | Select-Object Name, Length, LastWriteTime
 if (Test-Path $projOut) { Get-ChildItem $projOut -Filter *.png | Select-Object Name, Length, LastWriteTime }

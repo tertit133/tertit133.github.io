@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { profile, stack, offers, experience, education, languages } from './data/profile.js';
+import { profile, stack, skills, qualities, offers, experience, education, languages } from './data/profile.js';
 import { projects } from './data/projects.js';
 import {
   SunIcon,
@@ -7,6 +7,7 @@ import {
   MenuIcon,
   CloseIcon,
   MailIcon,
+  PhoneIcon,
   DownloadIcon,
   ExternalIcon,
   TelegramIcon,
@@ -16,7 +17,7 @@ import {
 const NAV = [
   { id: 'about', label: 'Обо мне' },
   { id: 'experience', label: 'Опыт' },
-  { id: 'stack', label: 'Стек' },
+  { id: 'skills', label: 'Навыки' },
   { id: 'projects', label: 'Проекты' },
   { id: 'work', label: 'Сотрудничество' },
   { id: 'contacts', label: 'Контакты' },
@@ -120,9 +121,24 @@ function Hero() {
           <a className="btn btn--primary" href={profile.telegram} target="_blank" rel="noreferrer">
             <TelegramIcon /> Написать в Telegram
           </a>
-          <a className="btn" href={profile.resume} target="_blank" rel="noreferrer">
-            <DownloadIcon /> Резюме (PDF)
-          </a>
+          {/* Основная часть кнопки — русское резюме, «EN» рядом — английское */}
+          <div className="btn-split">
+            <a className="btn" href={profile.resume.ru} target="_blank" rel="noreferrer">
+              <DownloadIcon /> Резюме (PDF)
+            </a>
+            <a
+              className="btn"
+              href={profile.resume.en}
+              target="_blank"
+              rel="noreferrer"
+              hrefLang="en"
+              lang="en"
+              aria-label="EN: resume in English (PDF)"
+              title="Resume in English (PDF)"
+            >
+              EN
+            </a>
+          </div>
         </div>
       </div>
     </section>
@@ -137,6 +153,19 @@ function Section({ id, title, children }) {
         {children}
       </div>
     </section>
+  );
+}
+
+function SkillCards({ items }) {
+  return (
+    <ul className="stack">
+      {items.map((s) => (
+        <li key={s.name} className="card stack__item">
+          <span className="stack__name">{s.name}</span>
+          <span className="muted">{s.note}</span>
+        </li>
+      ))}
+    </ul>
   );
 }
 
@@ -273,6 +302,14 @@ function Experience() {
             <div key={lang.name}>
               <h4>
                 {lang.name} — <span className="lang__level">{lang.level}</span>
+                {lang.levelName && (
+                  <>
+                    {' '}
+                    <span className="lang__name" lang="en">
+                      ({lang.levelName})
+                    </span>
+                  </>
+                )}
               </h4>
               <p className="muted">{lang.note}</p>
             </div>
@@ -307,12 +344,18 @@ export default function App() {
           <Experience />
         </Section>
 
-        <Section id="stack" title="Стек">
-          <ul className="stack">
-            {stack.map((s) => (
-              <li key={s.name} className="card stack__item">
-                <span className="stack__name">{s.name}</span>
-                <span className="muted">{s.note}</span>
+        <Section id="skills" title="Навыки">
+          <h3 className="subhead">Языки программирования</h3>
+          <SkillCards items={stack} />
+
+          <h3 className="subhead">Инструменты и практические навыки</h3>
+          <SkillCards items={skills} />
+
+          <h3 className="subhead">Профессиональные качества</h3>
+          <ul className="chips qualities">
+            {qualities.map((q) => (
+              <li key={q} className="chip">
+                {q}
               </li>
             ))}
           </ul>
@@ -328,22 +371,41 @@ export default function App() {
               <div key={o.title} className="card offer">
                 <h3>{o.title}</h3>
                 <p className="muted">{o.text}</p>
-                <a className="link-arrow" href={o.href} target="_blank" rel="noreferrer">
-                  {o.cta} →
-                </a>
+                <div className="offer__links">
+                  {o.links.map((l) => (
+                    <a
+                      key={l.href}
+                      className="link-arrow"
+                      href={l.href}
+                      target="_blank"
+                      rel="noreferrer"
+                      hrefLang={l.lang}
+                      lang={l.lang}
+                    >
+                      {l.label} →
+                    </a>
+                  ))}
+                </div>
               </div>
             ))}
           </div>
         </Section>
 
         <Section id="contacts" title="Контакты">
-          <p className="muted contacts__lead">Быстрее всего отвечаю в Telegram.</p>
+          <p className="muted contacts__lead">{profile.location}. Быстрее всего отвечаю в Telegram.</p>
           <div className="contacts">
             <a className="card contact" href={profile.telegram} target="_blank" rel="noreferrer">
               <TelegramIcon />
               <span>
                 <span className="contact__label">Telegram</span>
                 {profile.telegramHandle}
+              </span>
+            </a>
+            <a className="card contact" href={profile.phoneHref}>
+              <PhoneIcon />
+              <span>
+                <span className="contact__label">Телефон</span>
+                <span className="contact__nowrap">{profile.phone}</span>
               </span>
             </a>
             <a className="card contact" href={`mailto:${profile.email}`}>
